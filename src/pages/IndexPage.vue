@@ -1,6 +1,11 @@
 <template>
   <q-page class="flex items-center justify-center">
     <div class="container">
+      <img
+        style="margin-bottom: 15px"
+        src="../../public/icons/attach_money_black_48dp.svg"
+        alt="dollar symbol"
+      />
       <q-input
         class="input"
         outlined
@@ -9,6 +14,7 @@
         input-class="text-right"
         reverse-fill-mask
         style="margin-bottom: 1rem"
+        :disable="showTotal"
       />
       <q-input
         class="input"
@@ -17,6 +23,7 @@
         prefix="US$"
         input-class="text-right"
         reverse-fill-mask
+        :disable="showTotal"
       />
       <div class="button-container">
         <q-btn
