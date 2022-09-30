@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -58,6 +59,7 @@ export default defineComponent({
       dollar: 0,
       total: 0,
       showTotal: false,
+      $q: useQuasar(),
     }
   },
   methods: {
@@ -67,9 +69,16 @@ export default defineComponent({
       this.showTotal = false
     },
     calculateConversion() {
-      this.total = this.real / this.dollar
-      this.total = parseFloat(this.total.toFixed(2))
-      this.showTotal = true
+      if (this.dollar > 0) {
+        this.total = this.real / this.dollar
+        this.total = parseFloat(this.total.toFixed(2))
+        this.showTotal = true
+      } else {
+        this.$q.notify({
+          message: 'Use a value bigger than 0 (zero) on dollar field.',
+          color: 'negative',
+        })
+      }
     },
   },
 })
